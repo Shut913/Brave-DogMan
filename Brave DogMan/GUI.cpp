@@ -22,7 +22,6 @@ void GUI::drawInterface(const Map &map)
 		}
 		cout << endl;
 	}
-
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 3,1 });
 	cout << "Arrows - move";
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 3,2 });
@@ -52,7 +51,17 @@ void GUI::drawInterface(const Map &map)
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 2,short(6+i) });
 		for (int j = 0; j < 20; j++)
 		{
-			if (map._map[0][0][i][j] == 0) cout << " €";
+			if (map._map[0][0][i][j] == 0) cout << "  ";
+			else if (map._map[0][0][i][j] == 1) cout << " #";
+			else if (map._map[0][0][i][j] == 2) cout << " M";
+			else if (map._map[0][0][i][j] == 3) cout << " T";
+			else if (map._map[0][0][i][j] == 4) cout << " "<<char(5);
+			else if (map._map[0][0][i][j] == 5) cout << " !";
+			else if (map._map[0][0][i][j] == 6) cout << " @";
+			else if (map._map[0][0][i][j] == 8) cout << " ~";
+			else if (map._map[0][0][i][j] == 9) cout << " " << char(253);
+			else if (map._map[0][0][i][j] == 7) cout << " " << char(23);
+
 		}
 	}
 
