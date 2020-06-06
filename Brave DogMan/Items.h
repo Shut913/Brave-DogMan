@@ -5,11 +5,7 @@
 
 using namespace std;
 
-//class Items
-//{
-//
-//};
-
+// Weapons
 class Weapon
 {
 protected:
@@ -46,4 +42,123 @@ public:
 	Sword();
 };
 
+// Food
+class Food
+{
+protected:
+	int _id;
+	string _name;
+	int _restoreHp;
+	int _cost;
+
+	Food(int id, string name, int restoreHp, int cost);
+public:
+	string getName();
+};
+
+class Bread final : public Food
+{
+public:
+	Bread();
+};
+
+class Beer final : public Food
+{
+public:
+	Beer();
+};
+
+class Apple final : public Food
+{
+public:
+	Apple();
+};
+
+class HpPotion final : public Food
+{
+public:
+	HpPotion();
+};
+
+class Meat final : public Food
+{
+public:
+	Meat();
+};
+
+// Amulet
+class Amulet
+{
+protected:
+	int _id;
+	string _name;
+	double _hpBonus;
+	double _armourBonus;
+	double _attackBonus;
+	double _moneyBonus;
+
+	Amulet(int id, string name, double hpBonus, double armourBonus, double attackBonus, double moneyBonus);
+public:
+	string getName();
+};
+
+class AmuletOfHealth final : Amulet
+{
+public:
+	AmuletOfHealth();
+};
+
+class AmuletOfDefence final : Amulet
+{
+public:
+	AmuletOfDefence();
+};
+
+class AmuletOfPower final : Amulet
+{
+public:
+	AmuletOfPower();
+};
+
+class AmuletOfRich final : Amulet
+{
+public:
+	AmuletOfRich();
+};
+
+class AmuletOfGOD final: Amulet
+{
+public:
+	AmuletOfGOD();
+};
+
+// Armor
+class Armor
+{
+protected:
+	int _id;
+	string _name;
+	double _defence;
+	Armor(int id, string name, double defence);
+public:
+	string getName();
+};
+
+class LeatherArmor : Armor
+{
+public:
+	LeatherArmor();
+};
+
+class SteelArmor : Armor
+{
+public:
+	SteelArmor();
+};
+
+class DiamondArmor : Armor
+{
+public:
+	DiamondArmor();
+};
 #endif
