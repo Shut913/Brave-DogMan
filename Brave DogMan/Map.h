@@ -10,7 +10,7 @@ private:
 
 public:
 	Map();
-	int _map[1][1][15][20];
+	int _map[2][2][15][20];
 };
 
 #endif

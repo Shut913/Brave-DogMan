@@ -8,6 +8,7 @@ int Weapon::attack()
 
 void Weapon::showSpecs()
 {
+
 	cout << " Name: " << _name << endl
 		<< " Damage: " << _damage << endl
 		<< " Cost: " << _cost << endl;
