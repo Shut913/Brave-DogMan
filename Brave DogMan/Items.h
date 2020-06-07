@@ -102,31 +102,31 @@ public:
 	string getName();
 };
 
-class AmuletOfHealth final : Amulet
+class AmuletOfHealth final : public Amulet
 {
 public:
 	AmuletOfHealth();
 };
 
-class AmuletOfDefence final : Amulet
+class AmuletOfDefence final : public Amulet
 {
 public:
 	AmuletOfDefence();
 };
 
-class AmuletOfPower final : Amulet
+class AmuletOfPower final : public Amulet
 {
 public:
 	AmuletOfPower();
 };
 
-class AmuletOfRich final : Amulet
+class AmuletOfRich final : public Amulet
 {
 public:
 	AmuletOfRich();
 };
 
-class AmuletOfGOD final: Amulet
+class AmuletOfGOD final: public Amulet
 {
 public:
 	AmuletOfGOD();
@@ -144,19 +144,19 @@ public:
 	string getName();
 };
 
-class LeatherArmor : Armor
+class LeatherArmor final: public Armor
 {
 public:
 	LeatherArmor();
 };
 
-class SteelArmor : Armor
+class SteelArmor final: public Armor
 {
 public:
 	SteelArmor();
 };
 
-class DiamondArmor : Armor
+class DiamondArmor final: public Armor
 {
 public:
 	DiamondArmor();

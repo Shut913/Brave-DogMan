@@ -2,7 +2,7 @@
 
 GUI::GUI()
 {
-	system("mode con cols=59 lines=27"); // widow size 27x59
+	system("mode con cols=70 lines=30"); // widow size 27x65
 	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_CURSOR_INFO info;
 	GetConsoleCursorInfo(hOut, &info);
@@ -10,14 +10,15 @@ GUI::GUI()
 	SetConsoleCursorInfo(hOut, &info);
 }
 
-void GUI::drawInterface(const Map &map)
+void GUI::drawInterface(const Map &map, Unit& unit)
 {
+	system("cls");
 	// draw borders
 	for (int i = 0; i < 26; i++)
 	{
-		for (int j = 0; j < 29; j++)
+		for (int j = 0; j < 32; j++)
 		{
-			if (i == 0 || i == 5||i==21 || i == 25 || j == 0 || j == 21 || j == 28) cout << " *";
+			if (i == 0 || i == 5||i==21 || i == 25 || j == 0 || j == 21 || j == 31) cout << " *";
 			else cout << "  ";
 		}
 		cout << endl;
@@ -38,15 +39,18 @@ void GUI::drawInterface(const Map &map)
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 45,4 });
 	cout << "Gold: 1000";
 
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), {46,6});
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), {49,6});
 	cout << "Items:";
 
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 46,22 });
+	int x = unit.getUnitCoords()._x_Global;
+	int y = unit.getUnitCoords()._y_Global;
+
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 49,22 });
 	cout << "Map coord:";
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 48,23 });
-	cout << "5:-3";
-	int x = 1;
-	int y = 1;
+
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 51,23 });
+	cout << x <<':'<< y;
+
 	for (int i = 0; i < 15; i++)
 	{
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 2,short(6+i) });
@@ -67,10 +71,38 @@ void GUI::drawInterface(const Map &map)
 			else if (map._map[y][x][i][j] == 6) cout << " @";
 			else if (map._map[y][x][i][j] == 8) cout << " ~";
 			else if (map._map[y][x][i][j] == 9) cout << " " << char(23);
-			
-
 		}
 	}
 
+	unit.showBackpack();
+}
 
+void GUI::control(Map& map, Unit& unit)
+{
+	switch (_getch()) {
+	case (72):		// ^ - перемещение юнита вверх
+			
+		unit.moveUnitCoords(-1, 0, map);
+		//if (unit.getUnitCoords()._y_Local == 0)
+		//{
+		//
+		//}
+		//if (map._map[unit.getUnitCoords()._y_Global][unit.getUnitCoords()._x_Global][unit.getUnitCoords()._y_Local][unit.getUnitCoords()._x_Local])
+		break;
+	case (80):		// v - перемещение юнита вниз
+		unit.moveUnitCoords(1, 0, map);
+		break;
+	case (75):		// <- - перемещение юнита влево
+		unit.moveUnitCoords(0, -1, map);
+		break;
+	case (77):		// -> - перемещение юнита вправо
+		unit.moveUnitCoords(0, 1, map);
+		break;
+	case (32):		// space - подтвердить действие
+
+		break;
+	case (27):		// ESC - выход в меню
+
+		break;
+	}
 }

@@ -1,6 +1,6 @@
 #include "Map.h"
 
-Map::Map():
+Map::Map(Unit& unit):
 	_map
 { 
 	{ 
@@ -471,4 +471,6 @@ Map::Map():
 		}
 	}
 }
-{}
+{
+	_map[unit.getUnitCoords()._y_Global][unit.getUnitCoords()._x_Global][unit.getUnitCoords()._y_Local][unit.getUnitCoords()._x_Local] = 6;
+}
