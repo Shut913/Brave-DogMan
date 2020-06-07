@@ -36,7 +36,16 @@ void Enemy::attack(Unit & unit)
 // Sub classes:
 
 Wolf::Wolf():
-	Enemy("Wolf", 30) {} // Name=Wolf, MaxHp=30
+	Enemy("Wolf", 30, 3) {} // Name=Wolf, MaxHp=30, attaack=3
 
 Goblin::Goblin() :
-	Enemy("Goblin", 50) {} // Name=Goblin, MaxHp=50
+	Enemy("Goblin", 50, 5) {} // Name=Goblin, MaxHp=50, attaack=5
+
+Sceleton::Sceleton() :
+	Enemy("Sceleton", 75, 7) {} // Name=Sceleton, MaxHp=75, attaack=7
+
+Bandit::Bandit() :
+	Enemy("Bandit", 85, 8) {} // Name=Bandit, MaxHp=85, attaack=8
+
+Dragon::Dragon() :
+	Enemy("Dragon", 500, 10) {} // Name=Dragon, MaxHp=500, attaack=10

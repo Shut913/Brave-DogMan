@@ -2,6 +2,7 @@
 #define GUI_H
 
 #include <iostream>
+#include <conio.h>
 #include <Windows.h>
 #include "Map.h"
 #include "Enemy.h"
@@ -15,7 +16,8 @@ class GUI
 private:
 public:
 	GUI();
-	void drawInterface(const Map &map);
+	void drawInterface(const Map &map, Unit &unit );
+	void control(Map& map, Unit& unit);
 };
 
 

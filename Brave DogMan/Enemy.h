@@ -1,12 +1,13 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
+class Unit; // для видимости
+
 #include <iostream>
 #include "Unit.h"
 using namespace std;
 
 // Main class:
-
 class Enemy
 {
 protected:
@@ -28,7 +29,6 @@ public:
 };
 
 // Sub classes:
-
 class Wolf final : public Enemy
 {
 public:
