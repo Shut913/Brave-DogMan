@@ -1,7 +1,7 @@
 #ifndef MAP_H
 #define MAP_H
 
-class Unit; // Для видимости
+class Unit; // Г„Г«Гї ГўГЁГ¤ГЁГ¬Г®Г±ГІГЁ
 
 #include <iostream>
 #include "Unit.h"
@@ -12,8 +12,8 @@ class Map
 private:
 
 public:
-	Map(Unit &unit);
-	int _map[2][2][15][20];
+	Map();
+	int _map[5][5][15][20];
 };
 
 #endif

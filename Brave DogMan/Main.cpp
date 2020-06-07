@@ -1,21 +1,24 @@
 ﻿#include <iostream>
 #include <conio.h>
 #include "Map.h"
-#include "Enemy.h"
-#include "Items.h"
-#include "Unit.h"
+//#include "Enemy.h"
+//#include "Items.h"
+//#include "Unit.h"
 #include "GUI.h"
 
 using namespace std;
 
 int main()
 {
-    
+
+    SetConsoleOutputCP(1251);
+    SetConsoleCP(1251);
     Unit unit;
     Sword* s=new Sword;
     Knife* k=new Knife;
     Apple* a = new Apple;
     LeatherArmor* p = new LeatherArmor;
+
     //Dummy d;
     //u.attack(d);
 

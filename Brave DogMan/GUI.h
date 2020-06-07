@@ -5,9 +5,9 @@
 #include <conio.h>
 #include <Windows.h>
 #include "Map.h"
-#include "Enemy.h"
-#include "Items.h"
-#include "Unit.h"
+//#include "Enemy.h"
+//#include "Items.h"
+//#include "Unit.h"
 
 using namespace std;
 
