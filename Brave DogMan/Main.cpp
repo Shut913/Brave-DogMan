@@ -1,16 +1,15 @@
 ﻿#include <iostream>
 #include <conio.h>
 #include "Map.h"
-//#include "Enemy.h"
-//#include "Items.h"
-//#include "Unit.h"
+#include "Enemy.h"
+#include "Items.h"
+#include "Unit.h"
 #include "GUI.h"
 
 using namespace std;
 
 int main()
 {
-
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);
     Unit unit;
@@ -33,9 +32,9 @@ int main()
 
     Map map(unit);
     GUI g;
+    g.drawInterface(map, unit);
     while (true)
     {
-        g.drawInterface(map, unit);
         g.control(map, unit);
     }
     _getch();

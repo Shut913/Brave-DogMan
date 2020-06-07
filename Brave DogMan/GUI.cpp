@@ -79,24 +79,58 @@ void GUI::drawInterface(const Map &map, Unit& unit)
 
 void GUI::control(Map& map, Unit& unit)
 {
-	switch (_getch()) {
+	int key;
+	key = _getch();
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { short(unit.getUnitCoords()._x_Local*2+2),short(unit.getUnitCoords()._y_Local +6)});
+	cout << "  ";
+	switch (key) {
 	case (72):		// ^ - перемещение юнита вверх
-			
-		unit.moveUnitCoords(-1, 0, map);
-		//if (unit.getUnitCoords()._y_Local == 0)
-		//{
-		//
-		//}
-		//if (map._map[unit.getUnitCoords()._y_Global][unit.getUnitCoords()._x_Global][unit.getUnitCoords()._y_Local][unit.getUnitCoords()._x_Local])
+		if (unit.getUnitCoords()._y_Local != 0)
+		{
+			if (map._map[unit.getUnitCoords()._y_Global][unit.getUnitCoords()._x_Global][unit.getUnitCoords()._y_Local-1][unit.getUnitCoords()._x_Local]==0)
+				unit.moveUnitCoords(-1, 0, map);
+		}
+		else
+		{
+			unit.moveUnitCoords(-1, 0, map);
+			drawInterface(map, unit);
+		}
 		break;
 	case (80):		// v - перемещение юнита вниз
-		unit.moveUnitCoords(1, 0, map);
+		if (unit.getUnitCoords()._y_Local != 14)
+		{
+			if (map._map[unit.getUnitCoords()._y_Global][unit.getUnitCoords()._x_Global][unit.getUnitCoords()._y_Local + 1][unit.getUnitCoords()._x_Local] == 0)
+				unit.moveUnitCoords(1, 0, map);
+		}
+		else
+		{
+			unit.moveUnitCoords(1, 0, map);
+			drawInterface(map, unit);
+		}
 		break;
 	case (75):		// <- - перемещение юнита влево
-		unit.moveUnitCoords(0, -1, map);
+		if (unit.getUnitCoords()._x_Local != 0)
+		{
+			if (map._map[unit.getUnitCoords()._y_Global][unit.getUnitCoords()._x_Global][unit.getUnitCoords()._y_Local][unit.getUnitCoords()._x_Local-1] == 0)
+				unit.moveUnitCoords(0, -1, map);
+		}
+		else
+		{
+			unit.moveUnitCoords(0, -1, map);
+			drawInterface(map, unit);
+		}
 		break;
 	case (77):		// -> - перемещение юнита вправо
-		unit.moveUnitCoords(0, 1, map);
+		if (unit.getUnitCoords()._x_Local != 19)
+		{
+			if (map._map[unit.getUnitCoords()._y_Global][unit.getUnitCoords()._x_Global][unit.getUnitCoords()._y_Local][unit.getUnitCoords()._x_Local + 1] == 0)
+				unit.moveUnitCoords(0, 1, map);
+		}
+		else
+		{
+			unit.moveUnitCoords(0, 1, map);
+			drawInterface(map, unit);
+		}
 		break;
 	case (32):		// space - подтвердить действие
 
@@ -105,4 +139,7 @@ void GUI::control(Map& map, Unit& unit)
 
 		break;
 	}
+
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { short(unit.getUnitCoords()._x_Local * 2 + 2),short(unit.getUnitCoords()._y_Local + 6 )});
+	cout << " @";
 }

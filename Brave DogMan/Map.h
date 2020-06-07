@@ -12,7 +12,7 @@ class Map
 private:
 
 public:
-	Map();
+	Map(Unit& unit);
 	int _map[5][5][15][20];
 };
 
