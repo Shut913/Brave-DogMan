@@ -42,12 +42,17 @@ class Unit
 private:
 	Backpack _backpack;
 	Weapon* _weapon;
-
+	int _maxHp;
+	int _curHp;
 public:
 	Unit();
 
 	void attack(Enemy& enemy);
-
+	void getHit(int attackPower)
+	{
+		_curHp -= attackPower;
+		if (_curHp < 0) _curHp = 0;
+	}
 };
 
 #endif

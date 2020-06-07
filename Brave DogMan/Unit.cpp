@@ -64,7 +64,7 @@ void Backpack::take(Armor& armor)
 }
 
 // Unit
-Unit::Unit() :_backpack()
+Unit::Unit() :_backpack(), _maxHp{100}, _curHp{100}
 {
 	_weapon = Fists::getFists();
 }

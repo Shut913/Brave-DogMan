@@ -2,6 +2,7 @@
 #define ENEMY_H
 
 #include <iostream>
+#include "Unit.h"
 using namespace std;
 
 // Main class:
@@ -13,7 +14,8 @@ protected:
 	string _name;
 	int _maxHp;
 	int _curHp;
-	Enemy(string name, int maxHp, int curHp);
+	int _power;
+	Enemy(string name, int maxHp, int power);
 	static int _lastId;
 public:
 	string getName();
@@ -22,14 +24,40 @@ public:
 	int getMaxHp();
 	void heal();
 	int getId();
+	void attack(Unit& unit);
 };
 
 // Sub classes:
 
-class Dummy final : public Enemy
+class Wolf final : public Enemy
 {
 public:
-	Dummy();
+	Wolf();
 };
+
+class Goblin final : public Enemy
+{
+public:
+	Goblin();
+};
+
+class Sceleton final : public Enemy
+{
+public:
+	Sceleton();
+};
+
+class Bandit final : public Enemy
+{
+public:
+	Bandit();
+};
+
+class Dragon final : public Enemy
+{
+public:
+	Dragon();
+};
+
 
 #endif
