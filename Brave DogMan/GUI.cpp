@@ -45,22 +45,29 @@ void GUI::drawInterface(const Map &map)
 	cout << "Map coord:";
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 48,23 });
 	cout << "5:-3";
-
+	int x = 1;
+	int y = 1;
 	for (int i = 0; i < 15; i++)
 	{
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 2,short(6+i) });
 		for (int j = 0; j < 20; j++)
 		{
-			if (map._map[0][0][i][j] == 0) cout << "  ";
-			else if (map._map[0][0][i][j] == 1) cout << " #";
-			else if (map._map[0][0][i][j] == 2) cout << " M";
-			else if (map._map[0][0][i][j] == 3) cout << " T";
-			else if (map._map[0][0][i][j] == 4) cout << " "<<char(5);
-			else if (map._map[0][0][i][j] == 5) cout << " !";
-			else if (map._map[0][0][i][j] == 6) cout << " @";
-			else if (map._map[0][0][i][j] == 8) cout << " ~";
-			else if (map._map[0][0][i][j] == 9) cout << " " << char(253);
-			else if (map._map[0][0][i][j] == 7) cout << " " << char(23);
+			if (map._map[y][x][i][j] == 0) cout << "  ";
+			else if (map._map[y][x][i][j] == 1) cout << " #";
+			else if (map._map[y][x][i][j] == 2|| 
+				map._map[y][x][i][j] == 12|| 
+					map._map[y][x][i][j] == 22|| 
+						map._map[y][x][i][j] == 32|| 
+							map._map[y][x][i][j] == 42|| 
+								map._map[y][x][i][j] == 52) cout << " M";
+			else if (map._map[y][x][i][j] == 3) cout << " T";
+			else if (map._map[y][x][i][j] == 4) cout << " " << char(134);
+			else if (map._map[y][x][i][j] == 5) cout << " !";
+			else if (map._map[y][x][i][j] == 7) cout << " " << char(177);
+			else if (map._map[y][x][i][j] == 6) cout << " @";
+			else if (map._map[y][x][i][j] == 8) cout << " ~";
+			else if (map._map[y][x][i][j] == 9) cout << " " << char(23);
+			
 
 		}
 	}
