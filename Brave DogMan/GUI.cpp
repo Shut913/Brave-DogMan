@@ -21,6 +21,7 @@ void GUI::drawInterface(Map &map, Unit& unit)
 	drawGameWindow(map, unit);
 
 	drawUnitItems(unit);
+
 }
 
 void GUI::control(Map& map, Unit& unit)
@@ -28,8 +29,10 @@ void GUI::control(Map& map, Unit& unit)
 	int key;
 	int cellCode;
 	key = _getch();
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 102);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { short(unit.getUnitCoords()._x_Local*2+2),short(unit.getUnitCoords()._y_Local +6)});
 	cout << "  ";
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 	switch (key) {
 	case (72):		// ^ - перемещение юнита вверх
 		if (unit.getUnitCoords()._y_Local != 0)
@@ -106,9 +109,10 @@ void GUI::control(Map& map, Unit& unit)
 
 		break;
 	}
-
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 111);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { short(unit.getUnitCoords()._x_Local * 2 + 2),short(unit.getUnitCoords()._y_Local + 6 )});
 	cout << " @";
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 }
 
 void GUI::interract(int cellCode, Map& map, Unit& unit)
@@ -228,28 +232,70 @@ void GUI::drawGameWindow(Map& map, Unit& unit)
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 51,23 });
 	cout << x << ':' << y;
 
-	for (int i = 0; i < 15; i++)
+  for (int i = 0; i < 15; i++)
 	{
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 2,short(6 + i) });
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 2,short(6+i) });
 		for (int j = 0; j < 20; j++)
 		{
-			if (map._map[y][x][i][j] == 0) cout << "  ";
-			else if (map._map[y][x][i][j] == 1) cout << " #";
+			if (map._map[y][x][i][j] == 0)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 102);
+				cout << "  ";
+			}
+			else if (map._map[y][x][i][j] == 1)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 79);
+				cout << " #";
+			}
 			else if (map._map[y][x][i][j] == 2 ||
 				map._map[y][x][i][j] == 12 ||
 				map._map[y][x][i][j] == 22 ||
 				map._map[y][x][i][j] == 32 ||
 				map._map[y][x][i][j] == 42 ||
-				map._map[y][x][i][j] == 52) cout << " M";
-			else if (map._map[y][x][i][j] == 3) cout << " T";
-			else if (map._map[y][x][i][j] == 4) cout << " " << char(134);
-			else if (map._map[y][x][i][j] == 5) cout << " !";
-			else if (map._map[y][x][i][j] == 7) cout << " " << char(177);
-			else if (map._map[y][x][i][j] == 6) cout << " @";
-			else if (map._map[y][x][i][j] == 8) cout << " ~";
-			else if (map._map[y][x][i][j] == 9) cout << " " << char(23);
+				map._map[y][x][i][j] == 52)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 107);
+				cout << " M";
+			}
+			else if (map._map[y][x][i][j] == 3)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 106);
+				cout << " T";
+			}
+			else if (map._map[y][x][i][j] == 4)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 166);
+				cout << " " << char(134);
+			}
+			else if (map._map[y][x][i][j] == 5)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 110);
+				cout << " !";
+			}
+			else if (map._map[y][x][i][j] == 7)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 105);
+				cout << " " << char(177);
+			}
+			else if (map._map[y][x][i][j] == 6)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 111);
+				cout << " @";
+			}
+			else if (map._map[y][x][i][j] == 8)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 155);
+				cout << " ~";
+			}
+			else if (map._map[y][x][i][j] == 9)
+			{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 228);
+				cout << " " << char(23);
+			}
 		}
 	}
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 }
 
 void GUI::drawLegend()
