@@ -5,6 +5,7 @@ class Enemy; // Для видимости
 class Map;
 #include <iostream>
 #include <Windows.h>
+#include <iomanip>
 #include "Items.h"
 #include "Enemy.h"
 #include "Map.h"
@@ -56,6 +57,7 @@ private:
 	Coordinates _coords;
 	Backpack _backpack;
 	Weapon* _weapon;
+	int _money;
 	int _maxHp;
 	int _curHp;
 public:
@@ -68,10 +70,17 @@ public:
 		if (_curHp < 0) _curHp = 0;
 	}
 
+	int getCurHp();
+	int getMaxHp();
+	int getMoney();
+	string getCurWeapon();
+
 	void take(Weapon* item);
 	void take(Food* item);
 	void take(Amulet* item);
 	void take(Armor* item);
+	void take(int money);
+	void heal(int hp);
 	void showBackpack();
 	const Coordinates& getUnitCoords();
 	void moveUnitCoords(int yLocal, int xLocal, Map& map);
