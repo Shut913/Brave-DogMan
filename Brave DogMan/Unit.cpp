@@ -69,25 +69,25 @@ void Backpack::showAll()
 	for (int i = 0; i < _weaponsQty; i++)
 	{
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 45,short(7+k) });
-		cout << _weapon[i]->getName();
+		cout<<left <<setw(18)<< _weapon[i]->getName();
 		k++;
 	}
 	for (int i = 0; i < _foodQty; i++)
 	{
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 45,short(7 + k) });
-		cout << _food[i]->getName();
+		cout << left << setw(18) << _food[i]->getName();
 		k++;
 	}
 	for (int i = 0; i < _amuletQty; i++)
 	{
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 45,short(7 + k) });
-		cout << _amulet[i]->getName();
+		cout << left << setw(18) << _amulet[i]->getName();
 		k++;
 	}
 	for (int i = 0; i < _armorQty; i++)
 	{
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 45,short(7 + k) });
-		cout << _armor[i]->getName();
+		cout << left << setw(18) << _armor[i]->getName();
 		k++;
 	}
 
@@ -97,7 +97,7 @@ void Backpack::showAll()
 }
 
 // Unit
-Unit::Unit() :_backpack(), _maxHp{ 100 }, _curHp{ 100 }
+Unit::Unit() :_backpack(), _maxHp{ 100 }, _curHp{ 100 }, _money{100}
 {
 	_coords._x_Global=0;
 	_coords._y_Global = 0;
@@ -111,6 +111,18 @@ void Unit::attack(Enemy& enemy)
 	enemy.getHit(_weapon->attack());
 }
 
+
+int Unit::getCurHp()
+{return _curHp;}
+
+int Unit::getMaxHp()
+{return _maxHp;}
+
+int Unit::getMoney()
+{return _money;}
+
+string Unit::getCurWeapon()
+{return _weapon->getName();}
 
 void Unit::take(Weapon* item)
 {
@@ -130,6 +142,17 @@ void Unit::take(Amulet* item)
 void Unit::take(Armor* item)
 {
 	_backpack.take(item);
+}
+
+void Unit::take(int money)
+{
+	_money += money;
+}
+
+void Unit::heal(int hp)
+{
+	_curHp += hp;
+	if (_curHp > _maxHp) _curHp = _maxHp;
 }
 
 void Unit::showBackpack()

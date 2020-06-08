@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <conio.h>
+#include <time.h>
 #include "Map.h"
 #include "Enemy.h"
 #include "Items.h"
@@ -12,6 +13,8 @@ int main()
 {
     SetConsoleOutputCP(1251);
     SetConsoleCP(1251);
+    srand(time(NULL));
+
     Unit unit;
     Sword* s=new Sword;
     Knife* k=new Knife;
@@ -35,6 +38,7 @@ int main()
     g.drawInterface(map, unit);
     while (true)
     {
+        Sleep(150);
         g.control(map, unit);
     }
     _getch();
