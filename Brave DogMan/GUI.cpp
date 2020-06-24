@@ -112,12 +112,6 @@ void GUI::control(Map& map, Unit& unit)
 		drawUnitInfo(unit);
 		drawUnitItems(unit);
 		break;
-	case (32):		// space - подтвердить действие
-
-		break;
-	case (27):		// ESC - выход в меню
-
-		break;
 	}
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 111);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { short(unit.getUnitCoords()._x_Local * 2 + 2),short(unit.getUnitCoords()._y_Local + 6 )});
@@ -161,9 +155,10 @@ void GUI::interract(int* cell, Map& map, Unit& unit)
 		cout << "Trader";
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 3,9 });
 		cout << "Do you want buy this item? (Yes/No/Sell)";
-
+		
 		static int randomItem = 0;
 		randomItem++;
+		if (randomItem == 5) randomItem = 1;
 		Food* f = nullptr;
 		Armor* a = nullptr;
 		Amulet* am = nullptr;
@@ -261,6 +256,7 @@ void GUI::interract(int* cell, Map& map, Unit& unit)
 					unit.take(f);
 					unit.take(-f->getCost());
 				}
+				else delete f;
 				break;
 			case 2:
 				if (a->getCost() < unit.getMoney())
@@ -268,6 +264,7 @@ void GUI::interract(int* cell, Map& map, Unit& unit)
 					unit.take(a);
 					unit.take(-a->getCost());
 				}
+				else delete a;
 				break;
 			case 3:
 				if (am->getCost() < unit.getMoney())
@@ -275,6 +272,7 @@ void GUI::interract(int* cell, Map& map, Unit& unit)
 					unit.take(am);
 					unit.take(-am->getCost());
 				}
+				else delete am;
 				break;
 			case 4:
 				if (w->getCost() < unit.getMoney())
@@ -282,14 +280,15 @@ void GUI::interract(int* cell, Map& map, Unit& unit)
 					unit.take(w);
 					unit.take(-w->getCost());
 				}
+				else delete am;
 				break;
 			}
 			break;
-		case 110: // n - no
-			delete f;
-			delete a;
-			delete am;
-			delete w;
+			default:
+				delete f;
+				delete a;
+				delete am;
+				delete w;
 			break;
 		}
 
