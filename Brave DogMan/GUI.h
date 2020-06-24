@@ -18,11 +18,13 @@ public:
 	GUI();
 	void drawInterface(Map &map, Unit &unit );
 	void control(Map& map, Unit& unit);
-	void interract(int cellCode, Map& map, Unit& unit);
+	void interract(int* cell, Map& map, Unit& unit);
 	void drawUnitInfo(Unit& unit);
 	void drawUnitItems(Unit& unit);
 	void drawGameWindow(Map& map, Unit& unit);
 	void drawLegend();
+	bool drawFightWindow(Unit& unit, int* cell);
+	void beginText();
 };
 
 

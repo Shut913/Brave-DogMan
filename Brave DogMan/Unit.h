@@ -6,6 +6,7 @@ class Map;
 #include <iostream>
 #include <Windows.h>
 #include <iomanip>
+#include <conio.h>
 #include "Items.h"
 #include "Enemy.h"
 #include "Map.h"
@@ -30,6 +31,7 @@ private:
 	int _amuletQty;
 	Armor** _armor;
 	int _armorQty;
+	int _allItemsQty;
 public:
 	Backpack();
 
@@ -38,17 +40,17 @@ public:
 	void take(Amulet* amulet);
 	void take(Armor* armor);
 
-	//void drop(Weapon& weapon);
-	//void drop(Food& food);
-	//void drop(Amulet& amulet);
-	//void drop(Armor& armor);
+	void sellWeapon(Unit& unit, int pos);
+	void sellFood(Unit& unit, int pos);
+	void sellAmulet(Unit& unit, int pos);
+	void sellArmor(Unit& unit, int pos);
 
-	//void use(Weapon& weapon);
-	//void use(Food& food);
-	//void use(Amulet& amulet);
-	//void use(Armor& armor);
+	void useWeapon(Unit& unit, int pos);
+	void useFood(Unit& unit, int pos);
+	void useAmulet(Unit& unit, int pos);
+	void useArmor(Unit& unit, int pos);
 
-	void showAll();
+	void showAll(Unit& unit, bool interact, bool trade);
 };
 
 class Unit
@@ -57,24 +59,27 @@ private:
 	Coordinates _coords;
 	Backpack _backpack;
 	Weapon* _weapon;
+	Amulet* _amulet;
+	Armor* _armor;
 	int _money;
 	int _maxHp;
 	int _curHp;
 public:
 	Unit();
 
-	void attack(Enemy& enemy);
-	void getHit(int attackPower)
-	{
-		_curHp -= attackPower;
-		if (_curHp < 0) _curHp = 0;
-	}
-
+	void attack(Enemy* enemy);
+	int attackPower();
+	void getHit(int attackPower);
 	int getCurHp();
 	int getMaxHp();
 	int getMoney();
+	int getDef();
 	string getCurWeapon();
-
+	string getCurAmulet();
+	string getCurArmor();
+	void wear(Weapon* item);
+	void wear(Amulet* item);
+	void wear(Armor* item);
 	void take(Weapon* item);
 	void take(Food* item);
 	void take(Amulet* item);
@@ -84,8 +89,8 @@ public:
 	void showBackpack();
 	const Coordinates& getUnitCoords();
 	void moveUnitCoords(int yLocal, int xLocal, Map& map);
+	void useInventory(bool trade);
+
 };
 
 #endif
-
-

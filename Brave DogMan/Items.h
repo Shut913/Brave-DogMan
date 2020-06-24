@@ -19,6 +19,7 @@ public:
 	void showSpecs();
 	string getName();
 	int getId();
+	int getCost();
 };
 
 class Fists final: public Weapon
@@ -54,6 +55,8 @@ protected:
 	Food(int id, string name, int restoreHp, int cost);
 public:
 	string getName();
+	int getRestoreHp();
+	int getCost();
 };
 
 class Bread final : public Food
@@ -92,14 +95,20 @@ class Amulet
 protected:
 	int _id;
 	string _name;
-	double _hpBonus;
-	double _armourBonus;
-	double _attackBonus;
-	double _moneyBonus;
+	int _hpBonus;
+	int _armourBonus;
+	int _attackBonus;
+	int _moneyBonus;
+	int _cost;
 
-	Amulet(int id, string name, double hpBonus, double armourBonus, double attackBonus, double moneyBonus);
+	Amulet(int id, string name, int cost, int hpBonus, int armourBonus, int attackBonus, int moneyBonus);
 public:
 	string getName();
+	int getHpBonus();
+	int getArmorBonus();
+	int getAttackBonus();
+	int getMoneyBonus();
+	int getCost();
 };
 
 class AmuletOfHealth final : public Amulet
@@ -138,10 +147,13 @@ class Armor
 protected:
 	int _id;
 	string _name;
-	double _defence;
-	Armor(int id, string name, double defence);
+	int _defence;
+	int _cost;
+	Armor(int id, string name, int defence, int cost);
 public:
 	string getName();
+	int getDef();
+	int getCost();
 };
 
 class LeatherArmor final: public Armor

@@ -16,31 +16,43 @@ int main()
     srand(time(NULL));
 
     Unit unit;
-    Sword* s=new Sword;
-    Knife* k=new Knife;
-    Apple* a = new Apple;
-    LeatherArmor* p = new LeatherArmor;
+    Apple* a1 = new Apple;
+    Apple* a2 = new Apple;
+  
+    unit.take(a1);
+    unit.take(a2);
 
-    //Dummy d;
-    //u.attack(d);
-
-    unit.take(s);
-    unit.take(k);
-    unit.take(a);
-    unit.take(p);
-
-    a = nullptr;
-    s = nullptr;
-    k = nullptr;
+    a1 = nullptr;
+    a2 = nullptr;
 
     Map map(unit);
     GUI g;
+    g.beginText();
     g.drawInterface(map, unit);
-    while (true)
+    try
     {
-        Sleep(150);
-        g.control(map, unit);
+        while (true)
+        {
+            Sleep(150);
+            g.control(map, unit);
+        }
+    }
+    catch (const char* text)
+    {
+        for (int i = 0; i < 15; i++)
+        {
+            SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 2,short(6 + i) });
+            for (int j = 0; j < 20; j++)
+            {
+                cout << "  ";
+            }
+        }
+
+        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 15,13 });
+        cout << text;
+        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 15,14 });
     }
     _getch();
+    system("cls");
     return 0;
 }
