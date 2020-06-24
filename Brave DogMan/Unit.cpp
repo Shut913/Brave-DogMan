@@ -350,8 +350,8 @@ void Backpack::showAll(Unit& unit, bool interact=false,bool trade=false)
 // Unit
 Unit::Unit() :_backpack(), _maxHp{ 100 }, _curHp{ 34 }, _money{100}
 {
-	_coords._x_Global=0;
-	_coords._y_Global = 0;
+	_coords._x_Global=2;
+	_coords._y_Global = 3;
 	_coords._x_Local = 8;
 	_coords._y_Local = 7;
 	_weapon = Fists::getFists();

@@ -487,7 +487,7 @@ void GUI::drawGameWindow(Map& map, Unit& unit)
 	cout << "Map coord:";
 
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 51,23 });
-	cout << x << ':' << y;
+	cout << y << ':' << x;
 
   for (int i = 0; i < 15; i++)
 	{
